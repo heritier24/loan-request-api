@@ -20,6 +20,14 @@ return new class extends Migration
             $table->text('note')->nullable();
             $table->string('status')->nullable();
             $table->timestamps();
+
+            $table->foreign('clientID')->references('id')->on('Clients')
+                ->onDelete('restrict')
+                ->onUpdate('cascade');
+
+            $table->foreign('itemID')->references('id')->on('Items')
+                ->onDelete('restrict')
+                ->onUpdate('cascade');
         });
     }
 
