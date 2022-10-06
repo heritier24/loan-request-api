@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('loan_requests', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('clientID');  // foreign key client ID 
+            $table->unsignedBigInteger('itemID');    // foreign key item ID 
+            $table->text('note')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
+            $table->string('itemName');  // motorcycle, vehicle , devices , other 
+            $table->string('itemType');
+            $table->string('itemDescription');
+            $table->string('itemImage');
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }
