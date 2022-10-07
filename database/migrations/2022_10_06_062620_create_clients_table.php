@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('names');
             $table->string('gender');
             $table->string('phonenumber');
+            $table->string('nid');
             $table->string('salary');
             $table->string('commitment');
             $table->string('district'); // set district from distrct api selection 

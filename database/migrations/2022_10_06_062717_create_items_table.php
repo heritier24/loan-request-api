@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('itemName');  // motorcycle, vehicle , devices , other 
             $table->string('itemType');
             $table->string('itemDescription');
-            $table->string('itemImage');
+            $table->string('itemImage')->nullable();
             $table->string('status')->nullable();
             $table->timestamps();
         });

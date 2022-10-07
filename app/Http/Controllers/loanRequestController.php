@@ -10,7 +10,11 @@ class loanRequestController extends Controller
 
     public function getLoansRequest()
     {
-
+        try {
+            //code...
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
     }
 
     public function updateLoansRequest(int $id)

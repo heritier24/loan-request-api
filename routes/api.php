@@ -24,20 +24,20 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/clients', [ClientsController::class, 'clients']);
 
-Route::get('/clients/{id}', [ClientsController::class, 'clientById']);
+Route::get('/clients/{id}', [ClientsController::class, 'clientById'])->whereNumber('id');
 
 Route::post('/clients', [ClientsController::class, 'postClient']);
 
-Route::put('/client/update/{id}', [ClientsController::class, 'updateClient']);
+Route::put('/client/update/{id}', [ClientsController::class, 'updateClient'])->whereNumber('id');
 
 Route::get('/items', [ItemsController::class, 'listItems']);
 
 Route::post('/items', [ItemsController::class, 'postItem']);
 
-Route::put('/items/update/{id}', [ItemsController::class, 'updateItem']);
+Route::put('/items/update/{id}', [ItemsController::class, 'updateItem'])->whereNumber('id');
 
-Route::delete('/items/delete/{id}', [ClientsController::class, 'deleteItem']);
+Route::delete('/items/delete/{id}', [ClientsController::class, 'deleteItem'])->whereNumber('id');
 
 Route::get('loan-request', [loanRequestController::class, 'getLoansRequest']);
 
-Route::put('/loan-request/update/{id}', [loanRequestController::class, 'updateLoansRequest']);
+Route::put('/loan-request/update/{id}', [loanRequestController::class, 'updateLoansRequest'])->whereNumber('id');
