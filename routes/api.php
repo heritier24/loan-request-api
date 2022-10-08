@@ -40,4 +40,6 @@ Route::delete('/items/delete/{id}', [ClientsController::class, 'deleteItem'])->w
 
 Route::get('loan-request', [loanRequestController::class, 'getLoansRequest']);
 
+Route::post('loan-request', [loanRequestController::class, 'postLoansRequest']);
+
 Route::put('/loan-request/update/{id}', [loanRequestController::class, 'updateLoansRequest'])->whereNumber('id');

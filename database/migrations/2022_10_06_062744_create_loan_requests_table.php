@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('clientID');  // foreign key client ID 
             $table->unsignedBigInteger('itemID');    // foreign key item ID 
             $table->text('note')->nullable();
-            $table->string('status')->nullable();
+            $table->string('status')->default('Pending');
             $table->timestamps();
 
             $table->foreign('clientID')->references('id')->on('Clients')

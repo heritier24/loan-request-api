@@ -10,7 +10,7 @@ class ClientServices
 
     public function listClients(): array
     {
-        $clients = DB::select("select clients.names,clients.gender, 
+        $clients = DB::select("select clients.id,clients.names,clients.gender, 
                                clients.phonenumber, clients.nid, clients.salary, 
                                clients.commitment, 
                                clients.company, clients.position FROM clients ORDER BY clients.id DESC");

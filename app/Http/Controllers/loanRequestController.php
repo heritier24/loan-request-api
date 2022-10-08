@@ -2,23 +2,60 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\CreateLoanRequest;
+use App\Http\Requests\UpdateLoanRequest;
+use App\Services\LoanRequestServices;
 
 class loanRequestController extends Controller
 {
-    
+    public function __construct(private LoanRequestServices $service) {
+    }
 
     public function getLoansRequest()
     {
         try {
-            //code...
-        } catch (\Throwable $th) {
-            //throw $th;
+            $result = $this->service->listLoanRequest();
+
+            return response()->json(["message" => $result]);
+
+        } catch (\Exception $e) {
+            [$message, $statusCode, $exceptionCode] = getHttpMessageAndStatusCodeFromException($e);
+
+            return response()->json([
+                "message" => $message,
+            ], $statusCode);
         }
     }
 
-    public function updateLoansRequest(int $id)
+    public function postLoansRequest(CreateLoanRequest $request) 
     {
-        
+        try {
+            
+            $this->service->postLoansRequest($request->clientID, $request->itemID, $request->note);
+
+            return response()->json(["message" => "Loan Request Successfully created" ]);
+
+        } catch (\Exception $e) {
+            [$message, $statusCode, $exceptionCode] = getHttpMessageAndStatusCodeFromException($e);
+
+            return response()->json([
+                "message" => $message,
+            ], $statusCode);
+        }
+    }
+
+    public function updateLoansRequest(UpdateLoanRequest $request, int $id)
+    {
+        try {
+            $this->service->updateLoansRequest($request->status, $id);
+
+            return response()->json(["message" => "Loans Request Successfully updated" ]);
+        } catch (\Exception $e) {
+            [$message, $statusCode, $exceptionCode] = getHttpMessageAndStatusCodeFromException($e);
+
+            return response()->json([
+                "message" => $message,
+            ], $statusCode);
+        }
     }
 }

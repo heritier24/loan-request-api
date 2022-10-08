@@ -9,12 +9,11 @@ class ItemsServices
 {
     public function listItems(): array
     {
-        $items = DB::select("select items.itemName,items.itemType,
+        $items = DB::select("select items.id,items.itemName,items.itemType,
                             items.itemDescription, items.itemImage
                             FROM items");
 
         return $items;
-
     }
 
     public function postItems(string $itemName, string $itemType, string $itemDescription, string $itemImage = null): Items
