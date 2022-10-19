@@ -13,8 +13,8 @@ class LoanRequestServices
 
     public function listLoanRequest(): array
     {
-        $loanRequest = DB::select("SELECT clients.names, clients.gender, clients.phonenumber,
-                                 clients.salary, clients.commitment, 
+        $loanRequest = DB::select("SELECT loan_requests.id, clients.names, clients.gender, clients.phonenumber,
+                                 clients.salary, clients.commitment, clients.amountAllowed,
                                  items.itemName, items.itemType, 
                                  loan_requests.status 
                                  FROM loan_requests
@@ -42,6 +42,31 @@ class LoanRequestServices
             "status" => $status,
         ]);
         
+    }
+
+    public function countClientRequest()
+    {
+        return DB::selectOne("SELECT COUNT(loan_requests.id) AS allClients
+        FROM loan_requests");
+    }
+
+    public function countPendingRequest()
+    {
+        return DB::selectOne("SELECT COUNT(loan_requests.id) AS pendingClients 
+        FROM loan_requests WHERE loan_requests.status = 'Pending' ");
+
+    }
+
+    public function countConfirmedRequest()
+    {
+        return DB::selectOne("SELECT COUNT(loan_requests.id) AS confirmedClients 
+        FROM loan_requests WHERE loan_requests.status = 'Confirmed' ");
+    }
+
+    public function countDeclinedRequest()
+    {
+        return DB::selectOne("SELECT COUNT(loan_requests.id) AS declinedClients 
+        FROM loan_requests WHERE loan_requests.status = 'Declined' ");
     }
 
     public function validatePostLoanRequest(int $clientID, int $itemID)
