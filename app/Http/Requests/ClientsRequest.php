@@ -33,6 +33,7 @@ class ClientsRequest extends FormRequest
             "nid" => "required|integer",
             "salary" => "required|string",
             "commitment" => "required|string",
+            "amountAllowed" => "required|integer",
             "district" => "required|string",
             "sector" => "required|string",
             "company" => "required|string",
