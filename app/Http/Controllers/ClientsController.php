@@ -28,15 +28,19 @@ class ClientsController extends Controller
         }
     }
 
-    public function clientById(int $id)
+    public function clientById(int $nid)
     {
+        $client = $this->service->clientById($nid);
 
+        return response()->json([
+            "client" => $client,
+        ]);
     }
 
     public function postClient(ClientsRequest $request) 
     {
         try {
-            $this->service->postClient($request->names, $request->gender, $request->phonenumber, $request->nid, $request->salary, $request->commitment, $request->district, $request->sector, $request->company, $request->position);
+            $this->service->postClient($request->names, $request->gender, $request->phonenumber, $request->nid, $request->salary, $request->commitment, $request->amountAllowed, $request->district, $request->sector, $request->company, $request->position);
 
             return response()->json(["message" => "Successfully registered clients "]);
         } catch (\Exception $e) {
