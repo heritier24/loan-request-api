@@ -9,7 +9,7 @@ class ItemsServices
 {
     public function listItems(): array
     {
-        $items = DB::select("select items.id,items.itemName,items.itemType,
+        $items = DB::select("select items.id,items.itemName AS name,items.itemType,
                             items.itemDescription, items.itemImage
                             FROM items");
 
