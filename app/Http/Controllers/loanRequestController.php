@@ -58,4 +58,32 @@ class loanRequestController extends Controller
             ], $statusCode);
         }
     }
+
+    public function getCountRequestStatistics()
+    {
+        try {
+            
+            $countClients = $this->service->countClientRequest();
+
+            $countPending = $this->service->countPendingRequest();
+
+            $countConfirmed = $this->service->countConfirmedRequest();
+
+            $countDeclined = $this->service->countDeclinedRequest();
+
+            return response()->json([
+                "countClients" => $countClients,
+                "countPending" => $countPending,
+                "countconfirmed" => $countConfirmed,
+                "countDeclined" => $countDeclined,
+            ]);
+
+        } catch (\Exception $e) {
+            [$message, $statusCode, $exceptionCode] = getHttpMessageAndStatusCodeFromException($e);
+
+            return response()->json([
+                "message" => $message,
+            ], $statusCode);
+        }
+    }
 }
