@@ -18,9 +18,10 @@ return new class extends Migration
             $table->string('names');
             $table->string('gender');
             $table->string('phonenumber');
-            $table->string('nid');
+            $table->string('nid')->unique();
             $table->string('salary');
             $table->string('commitment');
+            $table->string('amountAllowed')->default("0");
             $table->string('district'); // set district from distrct api selection 
             $table->string('sector');   // sector here must be in the district selected 
             $table->string('company');
