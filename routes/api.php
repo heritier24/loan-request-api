@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\ItemsController;
 use App\Http\Controllers\loanRequestController;
@@ -21,6 +22,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('/signin', [AuthenticationController::class, 'login']);
+
 
 Route::get('/clients', [ClientsController::class, 'clients']);
 
@@ -33,6 +36,8 @@ Route::put('/client/update/{id}', [ClientsController::class, 'updateClient'])->w
 Route::get('/items', [ItemsController::class, 'listItems']);
 
 Route::post('/items', [ItemsController::class, 'postItem']);
+
+Route::get('/items/{itemId}', [ItemsController::class, 'getItemByItemId'])->whereNumber('itemId');
 
 Route::put('/items/update/{id}', [ItemsController::class, 'updateItem'])->whereNumber('id');
 
