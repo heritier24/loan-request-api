@@ -30,7 +30,6 @@ class CreateLoanRequest extends FormRequest
             "clientID" => "required|integer",
             "itemID" => "required|integer",
             "note",
-            "status"
         ];
     }
 
