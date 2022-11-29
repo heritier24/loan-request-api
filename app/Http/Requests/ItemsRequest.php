@@ -30,7 +30,7 @@ class ItemsRequest extends FormRequest
             "itemName" => "required",
             "itemType" => "required",
             "itemDescription" => "required",
-            "itemImage"
+            "itemImage" => "required|image|mimes:jpeg,png,jpg"
         ];
     }
 
