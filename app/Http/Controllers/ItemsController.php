@@ -27,6 +27,21 @@ class ItemsController extends Controller
         }
     }
 
+    public function getItemByItemId(int $itemId)
+    {
+        try {
+            $result = $this->service->getItemByItemId($itemId);
+
+            return response()->json(["items" => $result]);
+        } catch (\Exception $e) {
+            [$message, $statusCode, $exceptionCode] = getHttpMessageAndStatusCodeFromException($e);
+
+            return response()->json([
+                "message" => $message,
+            ], $statusCode);
+        }
+    }
+
     public function postItem(ItemsRequest $request)
     {
         try {
