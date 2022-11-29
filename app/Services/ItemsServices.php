@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Items;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ItemsServices
 {
@@ -16,13 +17,22 @@ class ItemsServices
         return $items;
     }
 
-    public function postItems(string $itemName, string $itemType, string $itemDescription, string $itemImage = null): Items
+    public function getItemByItemId(int $itemId)
     {
+        return DB::select("SELECT items.id,items.itemName AS name,
+                            items.itemType,
+                            items.itemDescription, items.itemImage
+                            FROM items WHERE items.id = ?", [$itemId]);
+    }
+
+    public function postItems(string $itemName, string $itemType, string $itemDescription, string $itemImage): Items
+    {
+        $path = Storage::putFile("items/image", $itemImage);
         return Items::create([
             "itemName" => $itemName,
             "itemType" => $itemType,
             "itemDescription" => $itemDescription,
-            "itemImage" => $itemImage
+            "itemImage" => $path
         ]);
     }
 
